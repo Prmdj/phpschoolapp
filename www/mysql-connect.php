@@ -4,7 +4,7 @@
 if(!empty($_ENV['MYSQL_HOST']))
    $host = $_ENV['MYSQL_HOST'];
 else
-   $host = 'moe-mysql-app';
+   $host = 'mysql';
 
 if(!empty($_ENV['MYSQL_USER']))
    $user = $_ENV['MYSQL_USER'];

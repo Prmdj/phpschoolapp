@@ -3,12 +3,12 @@ services:
   php:
     build: 
       context: .
-    image: amakundu/moe-php-mysql-demo:1.0.0
+    image: sreedocker123/phpschoolapp 
     networks:
       - frontend
       - backend
     environment:
-      - MYSQL_HOST=moe-mysql-app
+      - MYSQL_HOST=mysql
       - MYSQL_USER=moeuser
       - MYSQL_PASSWORD=moepass
       - MYSQL_DB=moe_db
@@ -16,9 +16,11 @@ services:
       - ./www/:/var/www/html/
     ports:
       - "30001:80"
-    container_name: moe-php-app
+    container_name: phpschoolapp
   mysql:
-    image: mysql:5.7
+    build:  
+      context: ./mysql
+    image: sreedocker123/schoolmysql 
     networks:
       - backend
     environment:
@@ -26,7 +28,6 @@ services:
       - MYSQL_USER=moeuser
       - MYSQL_PASSWORD=moepass 
       - MYSQL_DATABASE=moe_db
-    container_name: moe-mysql-app
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
     depends_on:
@@ -36,7 +37,7 @@ services:
     ports:
       - "30002:80"
     environment:
-      - PMA_HOST=moe-mysql-app
+      - PMA_HOST=mysql
       - PMA_PORT= 3306
     volumes:
       - /sessions
