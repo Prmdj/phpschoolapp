@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlineedu
+  labels:
+    app: onlineedu
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onlineedu
+  template:
+    metadata:
+      labels:
+        app: onlineedu
+    spec:
+      containers:
+        - image: sreedocker123/phpschoolapp:latest
+          name: onlineedu
+          env:
+          - name: MYSQL_HOST
+            value: mysqlnew:3306
+
