@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysqlnew
+  labels:
+    app: mysqlnew
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+  selector:
+    app: mysqlnew
