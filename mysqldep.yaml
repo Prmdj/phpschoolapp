@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysqlnew
+  labels:
+    app: mysqlnew
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqlnew
+  template:
+    metadata:
+      labels:
+        app: mysqlnew
+    spec:
+      containers:
+        - image: sreedocker123/schoolmysql:latest
+          name: mysqlnew
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpassword
+            - name: MYSQL_DATABASE
+              value: moe_db
+            - name: MYSQL_USER
+              value: moeuser
+            - name: MYSQL_PASSWORD
+              value: moepass
+          ports:
+            - containerPort: 3306
+              name: mysqlnew
